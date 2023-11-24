@@ -3,8 +3,8 @@ import { html } from "./view.js";
 import { createPreview, createPreviewsFragment, dataListItemsHandler, fragment, extracted } from "./preview.js";
 
 const MATCHES = books;
-// const RANGE = [Math.random() * (MATCHES.length - 1), Math.random() * (MATCHES.length - 1)];
 const RANGE = [0, 36];
+
 //css value for theme
 const day = {
   dark: "10, 10, 20",
@@ -78,10 +78,8 @@ for (const [id, name] of Object.entries(authors)) {
 }
 html.search.authors.appendChild(authorsFragment);
 
-// dlt this line? not affecting code
-// html.list.button == books.length - BOOKS_PER_PAGE;
 html.list.button.disabled = !(MATCHES.length - page * BOOKS_PER_PAGE > 0);
-// KINDA BROKEN
+
 html.list.button.innerHTML = `
     <span>Show more</span>
     <span class="list__remaining"> ${MATCHES.length - page * BOOKS_PER_PAGE > 0 ? MATCHES.length - page * BOOKS_PER_PAGE : 0}</span>
@@ -97,7 +95,7 @@ const dataCloseListHandler = (event) => {
 };
 html.list.close.addEventListener("click", dataCloseListHandler);
 
-// SHOW MORE BUTTON LOGIC - EXTENDS PAGE
+//show more button logic - extends page
 document.querySelector("[data-list-button]").addEventListener("click", (event) => {
   event.preventDefault();
   document.querySelector("[data-list-items]").appendChild(createPreviewsFragment(books, page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE));
@@ -193,10 +191,6 @@ document.querySelector("[data-search-form]").addEventListener("submit", (event) 
   window.scrollTo({ top: 0, behavior: "smooth" });
   document.querySelector("[data-search-overlay]").open = false;
 });
-
-// dlt these? not affecting code
-// html.settings.theme.value = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").MATCHES ? night : day;
-// const v = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").MATCHES ? "night" : "day";
 
 // Theme
 //change theme

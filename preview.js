@@ -44,7 +44,9 @@ export const createPreviewsFragment = (books, start, end) => {
   return fragment;
 };
 
-//book preview pop up
+/**
+ *code to make book preview pop up
+ */
 export const dataListItemsHandler = (event) => {
   event.preventDefault();
   const pathArray = Array.from(event.path || event.composedPath());
@@ -57,7 +59,7 @@ export const dataListItemsHandler = (event) => {
     for (const singleBook of books) {
       if (singleBook.id === previewId) {
         active = singleBook;
-        break; // No need to continue searching once we've found the active book
+        break;
       }
     }
   }
